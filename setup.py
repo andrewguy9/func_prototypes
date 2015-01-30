@@ -1,13 +1,13 @@
 from setuptools import setup
 
-setup(name='types',
+setup(name='prototypes',
       version='0.1',
       description='library which helps people constrain python functions by type.',
-      url='http://github.com/andrewguy9/types',
+      url='http://github.com/andrewguy9/prototypes',
       author='andrew thomson',
       author_email='athomsonguy@gmail.com',
       license='MIT',
-      packages=['types'],
+      packages=['prototypes'],
       entry_points = {
         'console_scripts': [
           ],

@@ -109,7 +109,7 @@ int_adder("asdf", "4") Raises TypeError
 ```
 
 #Limitiations:
-@constructors and @typed are unable to deal with other decorators which convert a function from having explit args to *args, **kwargs. I.E. any decorator. As a result, @constructors and @typed should be the lowest decorator on a function.
+@constructors and @typed are unable to deal with other decorators which convert a function from having explit args to \*args, **kwargs (i.e. any decorator). As a result, @constructors and @typed should be the lowest decorator on a function.
 
 ## Example:
 ```

@@ -119,3 +119,6 @@ int_adder("asdf", "4") Raises TypeError
 def int_adder(a, b):
   return a+b
 ```
+
+## Run time evaluation:
+Prototype only able to enforce annotations at run time. This means that prototype is not a replacement for proper testing or due diligence. Rather, prototype allows you to make your code better, with less typing. 

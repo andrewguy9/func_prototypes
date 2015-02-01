@@ -2,3 +2,6 @@ build/
 dist/
 eggs/
 prototypes.egg-info
+.tox
+*.pyc
+tests/__pycache__/

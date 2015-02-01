@@ -1,5 +1,7 @@
 from setuptools import setup
 
+tests_require = ['tox', 'pytest']
+
 setup(name='prototypes',
       version='0.1',
       description='library which helps people constrain python functions by type.',
@@ -8,6 +10,8 @@ setup(name='prototypes',
       author_email='athomsonguy@gmail.com',
       license='MIT',
       packages=['prototypes'],
+      tests_require=tests_require,
+      extras_require={'test': tests_require},
       entry_points = {
         'console_scripts': [
           ],

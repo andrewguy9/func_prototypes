@@ -12,10 +12,10 @@ By annotating your functions you give a clear signal to callers about what input
 Additionally, annotations can help you write functions with fewer type checking conditionals. 
 Annotations allow you to find bugs at the top of your functions rather than in the middle of a calculation.
 
-# Examples:
+# Implicit Converters:
+These decorators implicitly convert arguments are return values to the type you expect.
 
-## Consructors
-
+## Constructors
 Implicitly passes function arguments to a type constructor. Raises ValueError when invalid inputs are provided.
 ### Before:
 ```
@@ -27,6 +27,59 @@ def integer_adder(a, b):
 ### After:
 ```
 @constructors(int, int)
+def integer_adder(a, b):
+  return a+b
+```
+
+## Returns:
+Converts the result of a function to a given type.
+### Before:
+```
+def int_adder(a, b):
+  return int(a+b)
+```
+### After:
+```
+@returns(int)
+def int_adder(a, b):
+  return a+b
+```
+
+# Type Constrainers:
+These decorators raise TypeError when a constraint is violated.
+
+## Typed
+Enforces instanceof checks to arguments of a function.
+### Before:
+```
+def integer_adder(a, b):
+  if not instanceof(a, int):
+    raise TypeError("%s is not of type int" % a)
+  if not instanceof(b, int):
+    raise TypeError("%s is not of type int" % b)
+  return a+b
+```
+### After:
+```
+@typed(int, int)
+def integer_adder(a, b):
+  return a+b
+```
+
+## Returned 
+Enforces the result type of a function.
+### Before:
+```
+def integer_adder(a, b):
+  result = a+b
+  if not instanceof(result, int):
+    raise TypeError("%s is not an int" % result)
+  else:
+    return result
+  ```
+### After:
+```
+@returned(int)
 def integer_adder(a, b):
   return a+b
 ```

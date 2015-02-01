@@ -108,14 +108,14 @@ int_adder("3", "4") Raises TypeError
 int_adder("asdf", "4") Raises TypeError
 ```
 
-#Limitiations:
-@constructors and @typed are unable to deal with other decorators which convert a function from having explit args to \*args, **kwargs (i.e. any decorator). As a result, @constructors and @typed should be the lowest decorator on a function.
+# Limitiations:
+## Order of application matters:
+@constructors and @typed are unable to deal functions which use \*args and **kwargs. Since virtually all decorators convert a function from explicit args to args & kwargs, @constructors and @typed must be the first decorator on a function.
 
-## Example:
+### Example:
 ```
 @returned(int)
 @typed(int, int)
 def int_adder(a, b):
   return a+b
 ```
-

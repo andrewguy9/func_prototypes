@@ -32,7 +32,7 @@ def integer_adder(a, b):
 ```
 
 ## Returns:
-Converts the result of a function to a given type.
+Converts the result of a function to a given type. Raises ValueError on error.
 ### Before:
 ```
 def int_adder(a, b):
@@ -83,3 +83,15 @@ def integer_adder(a, b):
 def integer_adder(a, b):
   return a+b
 ```
+
+#Limitiations:
+@constructors and @typed are unable to deal with other decorators which convert a function from having explit args to *args, **kwargs. I.E. any decorator. As a result, @constructors and @typed should be the lowest decorator on a function.
+
+## Example:
+```
+@returned(int)
+@typed(int, int)
+def int_adder(a, b):
+  return a+b
+```
+

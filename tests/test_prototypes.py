@@ -1,5 +1,5 @@
 import pytest
-from prototypes import *
+from prototype import *
 
 def test_to_kwargs():
   def foo(a,b,c):

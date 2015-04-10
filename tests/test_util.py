@@ -1,5 +1,5 @@
 import pytest
-from prototype import *
+from func_prototypes import *
 
 def test_dictjoin():
   eng = {1:"one", 2:"two"}

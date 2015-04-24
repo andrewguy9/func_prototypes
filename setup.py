@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='func_prototypes',
-      version='0.1',
+      version='0.2',
       description='library which helps people constrain python functions by type.',
       url='https://github.com/andrewguy9/func_prototypes',
       author='andrew thomson',

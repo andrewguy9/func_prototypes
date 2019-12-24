@@ -1,4 +1,4 @@
-from util import dictjoin
+from func_prototypes.util import dictjoin
 from functools import partial, wraps
 from inspect import getargspec
 
@@ -7,7 +7,7 @@ Adapts args, kwargs into **kwargs only with help of function prototype.
 Prototype should be a list of arg names.
 """
 def to_kwargs(func, args, kwargs):
-  fname = func.func_name
+  fname = func.__name__
   spec = getargspec(func)
   if spec.varargs is not None or spec.keywords is not None:
     raise TypeError( "Cannot convert arguments for function %s because it uses args or kwargs." % fname)
@@ -16,7 +16,7 @@ def to_kwargs(func, args, kwargs):
   if len(prototype) < len(args):
     raise TypeError("%s takes at most %d arguments (%s given)" % (fname, len(prototype), len(args)))
   for name, value in zip(prototype, args):
-    if out.has_key(name):
+    if name in out:
       raise TypeError("%s got multiple values for keyword argument '%s'" % (fname, name))
     out[name] = value
   return out
@@ -26,7 +26,7 @@ def adapt(foo, convert, context=None):
   @wraps(foo)
   def wrapped(*args, **kwargs):
     kwargs = to_kwargs(foo, args, kwargs)
-    new_kwargs = convert(foo.func_name, kwargs, context)
+    new_kwargs = convert(foo.__name__, kwargs, context)
     return foo(**new_kwargs)
   return wrapped
 

@@ -5,3 +5,6 @@ prototype.egg-info
 .tox
 *.pyc
 tests/__pycache__/
+.coverage
+func_prototypes.egg-info/
+htmlcov/

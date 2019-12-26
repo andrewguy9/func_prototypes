@@ -1,6 +1,10 @@
 from func_prototypes.util import dictjoin
 from functools import partial, wraps
-from inspect import getargspec
+try:
+    from inspect import getfullargspec as inspector
+except ImportError:
+    from inspect import getargspec as inspector # Python 2 fallback.
+
 
 """
 Adapts args, kwargs into **kwargs only with help of function prototype.
@@ -8,8 +12,9 @@ Prototype should be a list of arg names.
 """
 def to_kwargs(func, args, kwargs):
   fname = func.__name__
-  spec = getargspec(func)
-  if spec.varargs is not None or spec.keywords is not None:
+  spec = inspector(func)
+  # spec 2 is kerwords for getargspec or varkw for getfullargspec
+  if spec.varargs is not None or spec[2] is not None:
     raise TypeError( "Cannot convert arguments for function %s because it uses args or kwargs." % fname)
   prototype = spec.args
   out = kwargs.copy()
